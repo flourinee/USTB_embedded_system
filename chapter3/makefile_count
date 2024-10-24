@@ -1,0 +1,6 @@
+count:count.o
+	gcc -o count count.o
+count.o:count.c
+	gcc -c count.c
+clean: 
+	rm -i *.o
