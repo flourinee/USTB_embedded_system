@@ -1,0 +1,1 @@
+This program will read this sentence and put it into another file through shared memory.
