@@ -7,8 +7,8 @@ int main(int argc,char* argv[]){
     char buf[100];
     int src=open(argv[1],O_RDONLY);
     int dest=open(argv[2],O_WRONLY);
-    read(src,buf,100);
+    read(src,buf,30);
     printf("%s",buf);
-    write(dest,buf,100);
+    write(dest,buf,30);
     return 0;
 }

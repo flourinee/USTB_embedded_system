@@ -15,11 +15,12 @@ int main(){
     char buf_r[88];
     memset(buf_r,0,sizeof(buf_r));
     int file=open(path,O_RDONLY);
-    read(file,buf_r,1000);
+    read(file,buf_r,88);
+    close(file);
     int shmid=shmget((key_t)1952,sizeof(buf_r),0666|IPC_CREAT);
     void* shmaddr=shmat(shmid,0,0);
     strcpy(shmaddr,buf_r);
-    printf("%s",shmaddr);
+    printf("msg from service:%s\n",shmaddr);
     shmdt(shmaddr);
     return 0;
 }

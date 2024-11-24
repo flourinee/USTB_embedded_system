@@ -11,7 +11,6 @@
 
 
 int main(){
-    sleep(3);
     char path[]="./writeme.txt";
     char buf_r[88];
     memset(buf_r,0,sizeof(buf_r));
@@ -19,8 +18,11 @@ int main(){
     int shmid=shmget((key_t)1952,sizeof(buf_r),0666|IPC_CREAT);
     void* shmaddr=shmat(shmid,0,0);
     strcpy(buf_r,shmaddr);
-    printf("%s\n",buf_r);
+    printf("msg from client:%s\n",buf_r);
     write(file,buf_r,sizeof(buf_r));
+    close(file);
     shmdt(shmaddr);
+    sleep(3);
+    shmctl(shmid,IPC_RMID,NULL);
     return 0;
 }
